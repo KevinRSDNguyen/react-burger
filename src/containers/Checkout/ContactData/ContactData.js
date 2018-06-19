@@ -79,7 +79,9 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Cheapest" }
           ]
         },
-        value: ""
+        validation: {},
+        value: "cheapest",
+        valid: true
       }
     },
     loading: false
@@ -161,6 +163,8 @@ class ContactData extends Component {
               elementConfig={formElement.config.elementConfig}
               value={formElement.config.value}
               changed={event => this.inputChangedHandler(event, formElement.id)}
+              invalid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
             />
           );
         })}
