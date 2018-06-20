@@ -16,12 +16,19 @@ export const purchaseBurgerFail = error => {
   };
 };
 
-export const purchaseBurgerStart = orderData => {
+// Set loading to true
+export const purchaseBurgerStart = () => {
+  return { type: actionTypes.PURCHASE_BURGER_START };
+};
+
+export const purchaseBurger = orderData => {
   return dispatch => {
+    dispatch(purchaseBurgerStart()); // Set loading to true
     axios
       .post("/orders.json", orderData)
       .then(({ data }) => {
         console.log(data);
+        // id and then form data
         dispatch(purchaseBurgerSuccess(data, orderData));
       })
       .catch(err => {
