@@ -37,7 +37,7 @@ class BurgerBuilder extends Component {
       .reduce((acc, next) => {
         return acc + next;
       }, 0);
-    this.setState({ purchasable: sum > 0 });
+    return sum > 0;
   };
   purchaseHandler = () => {
     //Toggle Modal
@@ -84,7 +84,7 @@ class BurgerBuilder extends Component {
             ingredientAdded={this.props.onIngredientAdded}
             ingredientRemoved={this.props.onIngredientRemoved}
             disabled={disabledInfo}
-            purchasable={this.state.purchasable}
+            purchasable={this.updatePurchaseState(this.props.ings)}
             ordered={this.purchaseHandler}
             price={this.props.price}
           />
