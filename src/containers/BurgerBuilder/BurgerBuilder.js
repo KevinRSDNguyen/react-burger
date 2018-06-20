@@ -8,26 +8,14 @@ import Modal from "./../../components/UI/Modal/Modal";
 import OrderSummary from "./../../components/Burger/OrderSummary/OrderSummary";
 import Spinner from "./../../components/UI/Spinner/Spinner";
 import withErrorHandler from "./../../hoc/withErrorHandler/withErrorHandler";
-import axios from "./../../axios-orders";
 import * as burgerBuilderActions from "./../../store/actions";
+import axios from "./../../axios-orders";
 
 class BurgerBuilder extends Component {
   state = {
-    purchasable: false, //Toggles order button
-    purchasing: false, //Show or hide modal
-    loading: false, // Show spinner or not
-    error: false
+    purchasing: false //Show or hide modal
   };
-  componentDidMount() {
-    // axios
-    //   .get("/ingredients.json")
-    //   .then(({ data }) => {
-    //     this.setState({ ingredients: data });
-    //   })
-    //   .catch(err => {
-    //     this.setState({ error: true });
-    //   });
-  }
+  componentDidMount() {}
   updatePurchaseState = ingredients => {
     //Toggles Order button
     const sum = Object.keys(ingredients)
@@ -85,9 +73,6 @@ class BurgerBuilder extends Component {
           purchaseContinued={this.purchaseContinueHandler}
         />
       );
-    }
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
     }
     return (
       <Aux>
