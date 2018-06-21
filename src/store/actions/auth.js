@@ -40,8 +40,8 @@ export const auth = (email, password, isSignup) => {
         dispatch(authSuccess(data.idToken, data.localId));
       })
       .catch(err => {
-        console.log(err);
-        dispatch(authFail(err));
+        console.log("meow", err);
+        dispatch(authFail(err.response.data.error));
       });
   };
 };
