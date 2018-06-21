@@ -23,6 +23,20 @@ export const authFail = error => {
   };
 };
 
+export const logout = () => {
+  return {
+    type: actionTypes.AUTH_LOGOUT
+  };
+};
+
+export const checkAuthTimeout = expirationTime => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(logout());
+    }, expirationTime * 1000);
+  };
+};
+
 // Can register or login
 export const auth = (email, password, isSignup) => {
   return dispatch => {
@@ -38,6 +52,7 @@ export const auth = (email, password, isSignup) => {
       .post(url, authData)
       .then(({ data }) => {
         dispatch(authSuccess(data.idToken, data.localId));
+        dispatch(checkAuthTimeout(data.expiresIn));
       })
       .catch(err => {
         console.log("meow", err);
