@@ -29,7 +29,7 @@ export const purchaseBurger = orderData => {
       .then(({ data }) => {
         console.log(data);
         // id and then form data
-        dispatch(purchaseBurgerSuccess(data, orderData));
+        dispatch(purchaseBurgerSuccess(data.name, orderData));
       })
       .catch(err => {
         dispatch(purchaseBurgerFail(err));
